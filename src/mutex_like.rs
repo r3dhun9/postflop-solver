@@ -24,6 +24,16 @@ pub struct MutexLike<T: ?Sized> {
     data: UnsafeCell<T>,
 }
 
+impl<T: Clone> Clone for MutexLike<T> {  
+    #[inline]  
+    fn clone(&self) -> Self {  
+        // Safely clone the inner value  
+        Self {  
+            data: UnsafeCell::new(unsafe { (*self.data.get()).clone() })  
+        }  
+    }  
+}
+
 /// Smart pointer like wrapper that is returned when [`MutexLike`] is "locked".
 #[derive(Debug)]
 pub struct MutexGuardLike<'a, T: ?Sized + 'a> {

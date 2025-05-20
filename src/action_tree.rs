@@ -146,7 +146,7 @@ pub struct ActionTree {
     history: Vec<Action>,
 }
 
-#[derive(Default)]
+#[derive(Default, Clone)]
 #[cfg_attr(feature = "bincode", derive(Decode, Encode))]
 pub(crate) struct ActionTreeNode {
     pub(crate) player: u8,

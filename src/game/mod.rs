@@ -30,7 +30,7 @@ enum State {
 }
 
 /// A struct representing a postflop game.
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct PostFlopGame {
     // state
     state: State,
